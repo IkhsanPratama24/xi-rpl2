@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Kelas Informatika</title>
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Kelas Informatika</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <form id="updateForm">
+                <div class="card">
+                    <h2>Update Beranda</h2>
+                    <textarea id="homeContent" name="homeContent" rows="5" placeholder="Masukkan konten untuk Beranda"></textarea>
+                </div>
+
+                <div class="card">
+                    <h2>Update Materi</h2>
+                    <textarea id="materiContent" name="materiContent" rows="5" placeholder="Masukkan konten untuk Materi"></textarea>
+                </div>
+
+                <div class="card">
+                    <h2>Update Jadwal</h2>
+                    <textarea id="jadwalContent" name="jadwalContent" rows="5" placeholder="Masukkan konten untuk Jadwal"></textarea>
+                </div>
+
+                <div class="card">
+                    <h2>Update Tugas</h2>
+                    <textarea id="tugasContent" name="tugasContent" rows="5" placeholder="Masukkan konten untuk Tugas"></textarea>
+                </div>
+
+                <div class="card">
+                    <h2>Update Sumber Daya</h2>
+                    <textarea id="sumberdayaContent" name="sumberdayaContent" rows="5" placeholder="Masukkan konten untuk Sumber Daya"></textarea>
+                </div>
+
+                <div class="card">
+                    <h2>Update Jumlah Siswa</h2>
+                    <input type="number" id="jumlahSiswa" name="jumlahSiswa" placeholder="Masukkan jumlah siswa" min="0">
+                </div>
+
+                <div class="card">
+                    <h2>Upload Foto Kelas</h2>
+                    <input type="file" id="fotoKelas" name="fotoKelas" accept="image/*">
+                    <div id="fotoPreview">
+                        <!-- Preview foto akan ditampilkan di sini -->
+                    </div>
+                </div>
+
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        async function updateContent() {
+            const response = await fetch('http://localhost:3000/api/update-content', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: 'Judul Baru',
+                    content: 'Konten Baru'
+                })
+            });
+        
+            const result = await response.json();
+            console.log(result);
+        }
+        
+        // Panggil fungsi ketika diperlukan, misalnya saat menekan tombol
+        document.getElementById('updateButton').addEventListener('click', updateContent);
+        </script>
+        
+    <script src="admin-script.js"></script>
+</body>
+</html>
